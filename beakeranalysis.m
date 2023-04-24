@@ -5,6 +5,7 @@ r2=[72.6 71.8 70.7 69.9 68.6];
 t2=[6 7 8 9 10];
 rr=[67.6 66.9 65.8 65.0 64.4];
 tr=[11 12 13 14 15];
+figure
 subplot(2,2,1);
 plot(t0,r0,'r'); hold on;
 plot(t2,r2,'g'); hold on;
@@ -18,7 +19,6 @@ title('Plot of temperature at h=H/4 for different radius');
 
 
 %% Plot of temperature at h=H/2 for different radius
-clear;clc;
 r0 = [63.9 63.4 63.0 62.4 61.9];
 t0=[16 17 18 19 20];
 r2=[ 61.5 61.0 60.5 60.3 59.6];
@@ -35,7 +35,6 @@ ylabel('Temperature (C)');
 hold off;
 title('Plot of temperature at h=H/2 for different radius');
 %% Plot of temperature at h=H for different radius
-clear;clc;
 r0 = [56.1 55.4 55.0 54.5 53.9];
 t0=[31 32 33 34 35];
 r2=[52.5 52.2 52.0 51.6 51.2];
@@ -55,7 +54,7 @@ title('Plot of temperature at h=H for different radius');
 
 
 %% Plot of temperatures for H/4, H/2 och H (from r=0 to r=R)
-clf;clear;
+figure
 rh4 = [79.3 78.0 76.7 74.9 73.80 72.6 71.8 70.7 69.9 68.6 67.6 66.9 65.8 65.0 64.4];
 th4=[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15];
 plot(th4,rh4,'r'); hold on;
@@ -76,7 +75,7 @@ legend('H/4','H/2','H');
 
 
 %% Plot of mass at all radiuses for h= H/4, H/2, H
-clf;clear;
+figure
 mh4 = [739.37 738.60 737.25 736.05 735.20 734.40 733.81 733.09 732.36 731.62 731.07 730.38 729.88 729.23 728.61];
 th4=[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15];
 plot(th4,mh4,'r'); hold on;
