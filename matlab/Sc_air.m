@@ -1,4 +1,4 @@
-function out = Sc_air(T)
+function out = Sc_air(T,DAB)
 %function that solves for Schmidt number 
 %DAB = mass diffusion rate
 %T=Twater/Tair/2
