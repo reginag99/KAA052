@@ -1,4 +1,4 @@
-function out = h(T_water, betag_v2, L, Pr_air)%D = diameter of the beaker
+function out = h(T_water_glas, betag_v2, L, Pr_air)%D = diameter of the beaker
 %calculate heat transfer coefficient. Referenses are to the book
 %"fundamentals of momentum, heat and masstransfer"
 
