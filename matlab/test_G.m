@@ -8,7 +8,7 @@ T0 = [T_water0];%[T_surf0, T_water0,(T_surf0-T_water0)/(r_outer-r_inner)];%T_sur
 t_span = [0 2000];
 
 
-[t,T] = ode45(@dT_dt_RG,t_span,T0);
+[t,T] = ode45(@dT_dt_G,t_span,T0);
 plot(t,T)
 legend('Twater')%('Tsurf','Twater','dTdr')
 
