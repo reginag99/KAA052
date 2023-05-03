@@ -1,7 +1,7 @@
 function dT_dt = dT_dt_G(t,T)
 %Variabler
-T_water = T;
-%m = T(2);
+T_water = T(1);
+m = T(2);
 
 %def av konstanter
 k_glas = 0.78;
@@ -13,7 +13,7 @@ eps = 0.95;
 r_outer = 70*10^-3;
 r_inner = 63*10^-3;
 T_air = 300;
-D_AB = 1; %ändraaaaaaaa plz
+D_AB = 2.634/p_water((T_water+T_air)/2); %ändraaaaaaaa plz
 R = 8.3145;
 M = (1.0079*2 + 16)*10^-3;
 
@@ -33,7 +33,7 @@ c_bulk = rho_water(T_water)/M;
 
 %derivator
 dTwater_dt =(-h_cyl(T_surf,T_air,betag_v2,L,r_outer)*A_surf*(T_surf-T_air) -h_top(T_water,T_air,betag_v2,r_inner)*A_top*(T_water-T_air) -sigma*eps*A_surf*(T_surf^4 - T_air^4))/(rho_water(T_water)*cp_water(T_water)*r_inner*2*pi*L_water);  %(-dTsurf_dt+h_surf*A_surf*(T_surf-T_air) + h_top*A_top*(T_water-T_air)+sigma*eps*A_surf*(T_surf^4 - T_air^4))/(rho_water(T_water)*cp_water(T_water)*r_inner*2*pi*L);
-%dm_dt = k_c*(c_surf-c_bulk);
+dm_dt = k_c*(c_surf-c_bulk);
 
-dT_dt = [dTwater_dt];
+dT_dt = [dTwater_dt;dm_dt];
 end
