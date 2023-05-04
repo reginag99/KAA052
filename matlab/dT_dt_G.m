@@ -29,7 +29,7 @@ T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L),T0,options);
 
 %k_c = h_top(T_water,T_air,betag_v2,r_inner)*(Sc_air((T_water + T_air)/2, D_AB)*pr_air(T_air,T_water))^(-2/3)/(cp_water(T_water)*rho_water((T_water+T_air)/2));
 c_surf = p_water(T_air)*0.22/(R*T_air);
-c_bulk = p_water((T_air+T_water)/2)/(R*(T_air+T_water)/2) %sida/kap 499/26 
+c_bulk = p_water((T_air+T_water)/2)/(R*(T_air+T_water)/2) %sida/kap 499/26, vi hade skrivit bulkkoncentrationen fel. Det är från vattenytan det evaporerar, därmed bör ångtrycket vid vattenytan användas som koncentration
 k_c = kc(T_water,T_air,betag_v2, r_inner,D_AB);
 
 %derivator
