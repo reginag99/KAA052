@@ -33,8 +33,9 @@ c_bulk = p_water((T_air+T_water)/2)/(R*(T_air+T_water)/2); %sida/kap 499/26, vi 
 k_c = kc(T_water,T_air,betag_v2, r_inner,D_AB);
 
 %derivator
+dm_dt = k_c*(c_surf-c_bulk)*M*A_top;%/(1-c_surf);
 dTwater_dt =(-h_cyl(T_surf,T_air,betag_v2,L,r_outer)*A_surf*(T_surf-T_air) -h_top(T_water,T_air,betag_v2,r_inner)*A_top*(T_water-T_air) -sigma*eps*A_surf*(T_surf^4 - T_air^4))/(rho_water(T_water)*cp_water(T_water)*r_inner*2*pi*L_water);  %(-dTsurf_dt+h_surf*A_surf*(T_surf-T_air) + h_top*A_top*(T_water-T_air)+sigma*eps*A_surf*(T_surf^4 - T_air^4))/(rho_water(T_water)*cp_water(T_water)*r_inner*2*pi*L);
-dm_dt = k_c*(c_surf-c_bulk)*M*A_top;
+%(-dHvap_water(T_water)*dm_dt)
 
 dT_dt = [dTwater_dt;dm_dt];
 end
