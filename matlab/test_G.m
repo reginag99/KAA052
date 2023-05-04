@@ -1,4 +1,4 @@
-clear,clc
+clear;clc;clf;
 T_water0 = 273.15+70;
 m0 = 125.81*10^-3;
 r_outer = 70*10^-3;
