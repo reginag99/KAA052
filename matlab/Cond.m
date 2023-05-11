@@ -1,4 +1,4 @@
-function fun = Cond(T_surf,T_water,T_air,L)
+function fun = Cond(T_surf,T_water,T_air,L,betag_v2)
 
 k_glas = 0.78;
 betag_v2 = 1.327*10^8;
