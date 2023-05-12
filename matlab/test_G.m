@@ -52,6 +52,11 @@ Rest_m = (S{:,3}*10^-3-T(:,2))';
 figure
 subplot(2,1,1)
 plot(t_span,Rest_T,'o')
+hold on
+yline(0,'r--')
+hold on
 subplot(2,1,2)
 plot(t_span,Rest_m,'o')
-
+hold on
+yline(0,'r--')
+hold on
