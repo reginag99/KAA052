@@ -36,16 +36,16 @@ legend('Model mass(g)','Exp mass(g)');
 
 % 
  MT = [T(:,1),S{:,2}+273.15];
- MT_name = {'Genereted data', 'Real data'}
- [p,t,stats] = anova1(MT,MT_name)
+ MT_name = {'Genereted data', 'Real data'};
+ [p,t,stats] = anova1(MT,MT_name);
 
  R2_T = 1-sum((S{:,2}+273.15-T(:,1)).^2)/sum((S{:,2}+273.25-mean(S{:,2}+273.15)).^2)
-Rest_T = (S{:,2}+273.15-T(:,1))'
+Rest_T = (S{:,2}+273.15-T(:,1))';
 
 
  Mm = [T(:,2),S{:,3}*10^(-3)];
- Mm_name = {'Genereted data, mass', 'Real data, mass'}
- [p,t,stats] = anova1(Mm,Mm_name)
+ Mm_name = {'Genereted data, mass', 'Real data, mass'};
+ [p,t,stats] = anova1(Mm,Mm_name);
 
  R2_m = 1-sum((S{:,3}*10^-3-T(:,2)).^2)/sum((S{:,3}*10^-3-mean(S{:,3}*10^-3)).^2)
 Rest_m = (S{:,3}*10^-3-T(:,2))';
@@ -53,6 +53,16 @@ Rest_m = (S{:,3}*10^-3-T(:,2))';
 figure
 subplot(2,1,1)
 plot(t_span,Rest_T,'o')
+yline(0,'r--')
+xlabel('Time, [s]')
+ylabel('Residuals')
+title('Plot over residual for heattransfer')
+
+
 subplot(2,1,2)
 plot(t_span,Rest_m,'o')
+yline(0,'r--')
+xlabel('Time, [s]')
+ylabel('Residuals')
+title('Plot over residual for masstransfer')
 
