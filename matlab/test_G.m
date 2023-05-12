@@ -19,7 +19,8 @@ plot(t,T(:,1)); hold on;
 a=S{:,2}+273.15;
 plot(t,a);
 legend('Model Twater (K)','Exp Twater (K)'); 
-
+temp=T(:,1);
+mass=T(:,2);
 %mass plots
 
 subplot(2,1,2)
