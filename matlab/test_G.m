@@ -39,6 +39,7 @@ legend('Model mass(g)','Exp mass(g)');
  [p,t,stats] = anova1(MT,MT_name)
 
  R2_T = 1-sum((S{:,2}+273.15-T(:,1)).^2)/sum((S{:,2}+273.25-mean(S{:,2}+273.15)).^2)
+Rest_T = (S{:,2}+273.15-T(:,1))'
 
 
  Mm = [T(:,2),S{:,3}*10^(-3)];
@@ -46,7 +47,11 @@ legend('Model mass(g)','Exp mass(g)');
  [p,t,stats] = anova1(Mm,Mm_name)
 
  R2_m = 1-sum((S{:,3}*10^-3-T(:,2)).^2)/sum((S{:,3}*10^-3-mean(S{:,3}*10^-3)).^2)
+Rest_m = (S{:,3}*10^-3-T(:,2))';
 
-
-
+figure
+subplot(2,1,1)
+plot(t_span,Rest_T,'o')
+subplot(2,1,2)
+plot(t_span,Rest_m,'o')
 
