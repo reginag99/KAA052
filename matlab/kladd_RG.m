@@ -2,66 +2,50 @@ clear; clc; clf; close  all
 S=readtable("small_beaker_3.txt");
 T_water0 = S{1,2}+273.15;
 m0 = S{1,3}*10^-3;
-r_outer = 70*10^-3;
-r_inner = 63*10^-3;
 
 
 T0 = [T_water0,m0];%[T_surf0, T_water0,(T_surf0-T_water0)/(r_outer-r_inner)];%T_surf, T_water
 t_span = S{:,1};
-%t_span = [0:30:length(S{1})];
+selctiontype = ['T_air', 'r_inner', 'r_outer', 'L'];
+Select = 1;
+I = 5;
 
 
-
-%T-plots
-[t,T] = ode45(@dT_dt_G,t_span,T0);
+figure("Name", "Variatin of constant  " + selctiontype(Select))
 subplot(2,1,1)
-plot(t,T(:,1)); hold on;
-a=S{:,2}+273.15;
-plot(t,a);
-legend('Model Twater (K)','Exp Twater (K)'); 
-
-%mass plots
-
+xlabel('Time, [s]','FontSize',12,'FontWeight','bold')
+ylabel('Temperature, [K]','FontSize',12,'FontWeight','bold')
+hold on
 subplot(2,1,2)
-plot(t,T(:,2)); hold on;
-legend('Mass')
+xlabel('Time, [s]','FontSize',12,'FontWeight','bold')
+ylabel('Mass, [g]','FontSize',12,'FontWeight','bold')
+hold on
 
-m=S{:,3}*10^-3;
-plot(t,m); 
-legend('Model mass(g)','Exp mass(g)');
+Green_light = [40,180,140];
+Green_dark = [15,140,100];
 
-%ser bra ut, men hon skulle rekommendera att vi lägger till
-%värmeöverföring från avdunstningen
-
-% 
-MT = [T(:,1),S{:,2}+273.15];
-MT_name = {'Genereted data', 'Real data'};
-[p,t,stats] = anova1(MT,MT_name);
-
-R2_T = 1-sum((S{:,2}+273.15-T(:,1)).^2)/sum((S{:,2}+273.25-mean(S{:,2}+273.15)).^2)
-Rest_T = (S{:,2}+273.15-T(:,1))';
+Orange_light = [250,110,15];
+Orange_dark = [200,80,0];
 
 
-Mm = [T(:,2),S{:,3}*10^(-3)];
-Mm_name = {'Genereted data, mass', 'Real data, mass'};
-[p,t,stats] = anova1(Mm,Mm_name);
-
-R2_m = 1-sum((S{:,3}*10^-3-T(:,2)).^2)/sum((S{:,3}*10^-3-mean(S{:,3}*10^-3)).^2)
-Rest_m = (S{:,3}*10^-3-T(:,2))';
-
-figure
-subplot(2,1,1)
-plot(t_span,Rest_T,'o')
-yline(0,'r--')
-xlabel('Time, [s]')
-ylabel('Residuals')
-title('Plot over residual for heattransfer')
 
 
-subplot(2,1,2)
-plot(t_span,Rest_m,'o')
-yline(0,'r--')
-xlabel('Time, [s]')
-ylabel('Residuals')
-title('Plot over residual for masstransfer')
-me)
+
+
+for iter = 1:I
+    Green_grad = @(iter) Green_light + (Green_dark - Green_light)/I*iter;
+    Orange_grad = @(iter) Orange_light + (Orange_dark - Orange_light)/I*iter;
+
+    It_opt = [Select,I,iter];
+    [t,T] = ode45(@(t,T) dT_dt_RG2(t,T,It_opt),t_span,T0);
+    %T-plots
+    subplot(2,1,1)
+    plot(t,T(:,1),'Color',Green_grad(iter)); hold on;
+    title('Variation analysis, heat transfer')
+        
+    %mass plots
+    subplot(2,1,2)
+    plot(t,T(:,2),'Color',Orange_grad(iter)); hold on;
+    legend('Mass')
+    title('Variation analysis, mass transfer')
+end

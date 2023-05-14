@@ -1,10 +1,8 @@
 %The plot shows the heat and mass transfer for different values of the
 %constants. The constants that can vary in the ones mentioned in
 %'selectiontype', 'Select' refers to the constant you want to vary and 'I'
-%is the number of different values you want to include in the plot. 
-%The max and min values for each constant that will be tested can be found 
-% in the file 'dT_dt_RG2.m' The values of the constant is illustrated by 
-% a colourgradient. 
+%is the number of different values you want to include in the plot. The
+%values of the constant is illustrated by a colourgradient. 
 
 %Lighter colour = low values of constant
 %Darker colour = high values of constant
@@ -20,7 +18,7 @@ T0 = [T_water0,m0]; %startvalues for the ode
 t_span = S{:,1};
 selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'}];%constants that can change. Choose one of them with 'Select'
 Select = 1; %The constant that will vary. 1 = T_air, 2 = r_inner ect
-I = 5; %Number of different values of constant you want to include in the plot
+I = 5; %Number of different values you want to include in the plot
 
 
 figure("Name", "Variatin of constant  " + selctiontype(Select))
@@ -60,3 +58,14 @@ for iter = 1:I
     title(['Variation analysis for ' selctiontype{Select} ', mass transfer'])
 end
 
+
+% figure
+% yline(-2, 'Color',Green_dark,'linewidth',1)
+% hold on
+% yline(-1,'Color',Green_light,'linewidth',1)
+% hold on
+% yline(2, 'Color', Orange_dark,'linewidth',1)
+% hold on
+% yline(1, 'Color',Orange_light,'linewidth',1)
+% hold on
+% ylim([-3,3])

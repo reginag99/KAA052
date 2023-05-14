@@ -1,15 +1,18 @@
-function dT_dt = dT_dt_RG2(t,T,select,I)
+function dT_dt = dT_dt_RG2(t,T,It_opt)
 %Variables
+select = It_opt(1);%Constant that will change
+I = It_opt(2);%number of different values of constant
+iter = It_opt(3);%Which iteration of the constant
 T_water = T(1);
 m = T(2);
 
-I = 5;
 
 %def constants, baseline
 k_glas = 0.78;
 L=95*10^-3;
 T_air = 20.6+273.15;
 beta = betag_v2(T_air);
+
 sigma = 5.67*10^-8;
 eps = 0.95;
 r_outer = 70*10^-3;
@@ -17,18 +20,33 @@ r_inner = 63*10^-3;
 D_AB = 2.634/101325;%p_water((T_water+T_air)/2); %ändraaaaaaaa plz
 R = 8.3145;
 M = (1.0079*2 + 16)*10^-3;
+
 Tair_min = 273.15 + 15;
 Tair_max = 273.15 + 25;
 dT = (Tair_max-Tair_min)/I;
 
-for i = 1:I
-    if select = 1
-        T_air = Tair_min + dT*i;
-        i = i+1;
-        break
+rinner_min = 50*10^-3/2;
+rinner_max = 70*10^-3/2;
+drinner = (rinner_max-rinner_min)/I;
 
-    end
+router_min = 50*10^-3/2;
+router_max = 70*10^-3/2;
+drouter = (router_max-router_min)/I;
+
+L_min = 80*10^-3;
+L_max = 105*10^-3;
+dL = (L_max - L_min)/I;
+
+if select == 1
+          T_air = Tair_min + dT*iter;
+elseif select == 2
+            r_inner = rinner_min + drinner*iter;
+elseif select == 3
+            r_outer = router_min + drouter*iter;
+elseif select == 4
+            L = L_min + dL*iter;
 end
+    
 
 
 
