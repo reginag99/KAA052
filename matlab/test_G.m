@@ -31,8 +31,7 @@ m=S{:,3}*10^-3;
 plot(t,m); 
 legend('Model mass(g)','Exp mass(g)');
 
-%ser bra ut, men hon skulle rekommendera att vi lägger till
-%värmeöverföring från avdunstningen
+%%
 
 % 
 MT = [T(:,1),S{:,2}+273.15];
@@ -49,7 +48,7 @@ Mm_name = {'Genereted data, mass', 'Real data, mass'};
 
 R2_m = 1-sum((S{:,3}*10^-3-T(:,2)).^2)/sum((S{:,3}*10^-3-mean(S{:,3}*10^-3)).^2)
 Rest_m = (S{:,3}*10^-3-T(:,2))';
-
+%%
 figure
 subplot(2,1,1)
 plot(t_span,Rest_T,'o')
