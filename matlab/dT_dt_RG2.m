@@ -25,7 +25,7 @@ Tair_max = 273.15 + 25;
 dT = (Tair_max-Tair_min)/I;
 
 rinner_min = 50*10^-3/2;
-rinner_max = 70*10^-3/2;
+rinner_max = 100*10^-3/2;
 drinner = (rinner_max-rinner_min)/I;
 
 router_min = r_inner/2-5*10^-3;

@@ -14,7 +14,7 @@ clear; clc; clf; close  all
 T_water0 = 90+273.15;
 m0 = 150*10^-3;
 T0 = [T_water0,m0]; %startvalues for the ode
-t_span =[0:10000];
+t_span =[0:3000];
 t_h = t_span(end)/3600
 
 selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'},{'k'},{'epsilon'}];%constants that can change. Choose one of them with 'Select'

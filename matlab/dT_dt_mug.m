@@ -8,13 +8,14 @@ m = T(2);
 
 
 %def constants, baseline
-k = 0.9;
+k_glas = 0.78;
+k = k_glas;
 sigma = 5.67*10^-8;
 eps = 0.95;
+L=95*10^-3;
 T_air = 20.6+273.15;
-r_outer = 70*10^-3/2;
-r_inner = r_outer - 5*10^-3; %for the mug
-L = 150*10^-6/(r_inner^2*pi);  %for the mug
+r_outer = 70*10^-3;
+r_inner = 63*10^-3;
 D_AB = 2.634/101325;%p_water((T_water+T_air)/2); %ändraaaaaaaa plz
 R = 8.3145;
 M = (1.0079*2 + 16)*10^-3;
