@@ -8,7 +8,8 @@ m = T(2);
 
 
 %def constants, baseline
-k_glas = 0.78;
+k_glas = 0.9;
+k = k_glas;
 sigma = 5.67*10^-8;
 eps = 0.95;
 L=95*10^-3;
@@ -35,14 +36,22 @@ L_min = 80*10^-3;
 L_max = 105*10^-3;
 dL = (L_max - L_min)/I;
 
+sigma_min = 3*10^-8;
+sigma_max = 7*10^-8;
+dSigma = (sigma_max - sigma_min)/I;
+
 if select == 1
-          T_air = Tair_min + dT*iter;
+    T_air = Tair_min + dT*iter;
 elseif select == 2
-            r_inner = rinner_min + drinner*iter;
+    r_inner = rinner_min + drinner*iter;
 elseif select == 3
-            r_outer = router_min + drouter*iter;
+    r_outer = router_min + drouter*iter;
 elseif select == 4
-            L = L_min + dL*iter;
+    L = L_min + dL*iter;
+elseif select == 5
+    sigma = sigma_min + iter*dSigma;
+elseif select == 6
+    k = k_min + iter*dk;
 end
     
 
@@ -53,7 +62,7 @@ L_water=m0/(rho_water(273.15+78.6)*2*r_inner*pi);
 
 T0=[T_water-5];%initial guess for T_surf
 options = optimoptions('fsolve','Display','none');
-T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta),T0,options);
+T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k),T0,options);
 
 c_surf = p_water(T_air)*0.22/(R*T_air);
 c_bulk = p_water((T_air+T_water)/2)/(R*(T_air+T_water)/2); %sida/kap 499/26, vi hade skrivit bulkkoncentrationen fel. Det är från vattenytan det evaporerar, därmed bör ångtrycket vid vattenytan användas som koncentration

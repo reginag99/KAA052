@@ -8,7 +8,7 @@ m = T(2);
 
 
 %def constants, baseline
-k = 0.9;
+k = 0.78;
 sigma = 5.67*10^-8;
 eps = 0.95;
 T_air = 20.6+273.15;
@@ -35,9 +35,13 @@ L_min = 80*10^-3;
 L_max = 105*10^-3;
 dL = (L_max - L_min)/I;
 
-k_max = 50;
+k_max = 20;
 k_min = 0.01;
 dk = (k_max-k_min)/I;
+
+DAB_max = 2;
+DAB_min = 0.5;
+dDAB = (DAB_max-DAB_min)/I;
 
 
 if select == 1
@@ -56,6 +60,8 @@ elseif select == 4
     r_outer = r_inner + 5*10^-3;  %for the mug
 elseif select == 5
     k = k_min + iter*dk;
+elseif select == 6
+    D
 end
     
 

@@ -35,14 +35,20 @@ L_min = 80*10^-3;
 L_max = 105*10^-3;
 dL = (L_max - L_min)/I;
 
+sigma_min = 3*10^-8;
+sigma_max = 7*10^-8;
+dSigma = (sigma_max - sigma_min)/I;
+
 if select == 1
-          T_air = Tair_min + dT*iter;
+    T_air = Tair_min + dT*iter;
 elseif select == 2
-            r_inner = rinner_min + drinner*iter;
+    r_inner = rinner_min + drinner*iter;
 elseif select == 3
-            r_outer = router_min + drouter*iter;
+    r_outer = router_min + drouter*iter;
 elseif select == 4
-            L = L_min + dL*iter;
+    L = L_min + dL*iter;
+elseif select == 5
+    sigma = sigma_min + iter*dSigma;
 end
     
 

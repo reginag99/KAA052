@@ -18,8 +18,8 @@ m0 = S{1,3}*10^-3;
 
 T0 = [T_water0,m0]; %inital values for the ode
 t_span = S{:,1};
-selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'}];%constants that can change. Choose one of them with 'Select'
-Select = 4; %The constant that will vary. 1 = T_air, 2 = r_inner ect
+selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'}, {'Sigma'},{'k'}];%constants that can change. Choose one of them with 'Select'
+Select = 2; %The constant that will vary. 1 = T_air, 2 = r_inner ect
 I = 7; %Number of different values of constant you want to include in the plot
 
 
