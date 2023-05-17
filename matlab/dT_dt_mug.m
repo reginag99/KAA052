@@ -39,6 +39,9 @@ k_max = 50;
 k_min = 0.01;
 dk = (k_max-k_min)/I;
 
+eps_min = 0.2;
+eps_max = .6;
+deps = (eps_max - eps_min)/I;
 
 if select == 1
     T_air = Tair_min + dT*iter;
@@ -56,6 +59,8 @@ elseif select == 4
     r_outer = r_inner + 5*10^-3;  %for the mug
 elseif select == 5
     k = k_min + iter*dk;
+elseif select == 6
+    eps = eps_min + iter*deps;
 end
     
 
