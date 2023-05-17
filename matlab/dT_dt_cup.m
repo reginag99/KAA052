@@ -1,74 +1,34 @@
-function dT_dt = dT_dt_RG2(t,T,It_opt,m0)
-%Variables
-select = It_opt(1);%Constant that will change
-I = It_opt(2);%number of different values of constant
-iter = It_opt(3);%Which iteration of the constant
+function dT_dt = dT_dt_cup(t,T)
+%Variabler
 T_water = T(1);
 m = T(2);
 
-
-%def constants, baseline
-k_glas = 0.033;
-L=95*10^-3;
+%def av konstanter
+k =17.3; %s 628 aluminium, for 100 C;
 T_air = 20.6+273.15;
 beta = betag_v2(T_air);
-
+eps = 0.09;%s.352 Commericial sheet, aluminium, for 100 C
 sigma = 5.67*10^-8;
-eps = 0.95;
-r_outer = 70*10^-3;
-r_inner = 63*10^-3;
+
+r_inner = 70*10^-3/2;
+r_outer = r_inner + 5*10^-3;  %for the mug
+L = 150*10^-6/(r_inner^2*pi);
 D_AB = 2.634/101325;%p_water((T_water+T_air)/2); %ändraaaaaaaa plz
 R = 8.3145;
 M = (1.0079*2 + 16)*10^-3;
 
-Tair_min = 273.15 + 15;
-Tair_max = 273.15 + 25;
-dT = (Tair_max-Tair_min)/I;
 
-rinner_min = 50*10^-3/2;
-rinner_max = 70*10^-3/2;
-drinner = (rinner_max-rinner_min)/I;
-
-router_min = r_inner/2-5*10^-3;
-router_max = 70*10^-3/2;
-drouter = (router_max-router_min)/I;
-
-L_min = 80*10^-3;
-L_max = 105*10^-3;
-dL = (L_max - L_min)/I;
-
-eps_min = 0.5;
-eps_max = 1;
-deps = (eps_max - eps_min)/I;
-
-k_max = 50;
-k_min = 0.1;
-dk = (k_max-k_min)/I;
-
-if select == 1
-    T_air = Tair_min + dT*iter;
-elseif select == 2
-    r_inner = rinner_min + drinner*iter;
-elseif select == 3
-    r_outer = router_min + drouter*iter;
-elseif select == 4
-    L = L_min + dL*iter;
-elseif select == 5
-    eps = eps_min + iter*deps;
-elseif select == 6
-    k = k_min + iter*dk;
-end
-    
-
-beta = betag_v2(T_air);
 A_surf = r_outer*2*pi*L;
 A_top = r_inner^2*pi;
-L_water=m0/(rho_water(273.15+78.6)*2*r_inner*pi);
+
+L_water=125.81*10^-3/(rho_water(273.15+78.6)*2*r_inner*pi);
 
 T0=[T_water-5];%initial guess for T_surf
 options = optimoptions('fsolve','Display','none');
 T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k),T0,options);
+%eps = 0.032 + (0.35-0.032)/((3000+273.15)-(26 +273.15))*(T_surf-(26+273.15))
 
+%k_c = h_top(T_water,T_air,betag_v2,r_inner)*(Sc_air((T_water + T_air)/2, D_AB)*pr_air(T_air,T_water))^(-2/3)/(cp_water(T_water)*rho_water((T_water+T_air)/2));
 c_surf = p_water(T_air)*0.22/(R*T_air);
 c_bulk = p_water((T_air+T_water)/2)/(R*(T_air+T_water)/2); %sida/kap 499/26, vi hade skrivit bulkkoncentrationen fel. Det är från vattenytan det evaporerar, därmed bör ångtrycket vid vattenytan användas som koncentration
 k_c = kc(T_water,T_air,beta, r_inner,D_AB);
@@ -81,5 +41,9 @@ conv_mass = dHvap_water(T_water)*dm_dt;
 
 dTwater_dt =(-conv_mass-conv_heat -rad)/(rho_water(T_water)*cp_water(T_water)*r_inner*2*pi*L_water);  
 
+
+%(-dTsurf_dt+h_surf*A_surf*(T_surf-T_air) + h_top*A_top*(T_water-T_air)+sigma*eps*A_surf*(T_surf^4 - T_air^4))/(rho_water(T_water)*cp_water(T_water)*r_inner*2*pi*L);
+% q_svett = kc*(cas-cabulk)*dHvap *m
+%rho cp dtwaterdt = konuktion + konvektion + radiation 
 dT_dt = [dTwater_dt;dm_dt];
 end

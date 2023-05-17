@@ -8,10 +8,9 @@ m = T(2);
 
 
 %def constants, baseline
-k_glas = 0.78;
-k = k_glas;
+k = 17.3;
 sigma = 5.67*10^-8;
-eps = 0.95;
+eps = 0.09;
 L=95*10^-3;
 T_air = 20.6+273.15;
 r_outer = 70*10^-3;
@@ -33,14 +32,14 @@ router_max = 70*10^-3/2;
 drouter = (router_max-router_min)/I;
 
 L_min = 80*10^-3;
-L_max = 105*10^-3;
+L_max = 150*10^-3;
 dL = (L_max - L_min)/I;
 
 k_max = 50;
 k_min = 0.01;
 dk = (k_max-k_min)/I;
 
-eps_min = 0.2;
+eps_min = 0.033;
 eps_max = .6;
 deps = (eps_max - eps_min)/I;
 

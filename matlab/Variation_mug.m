@@ -18,7 +18,7 @@ t_span =[0:10000];
 t_h = t_span(end)/3600
 
 selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'},{'k'},{'epsilon'}];%constants that can change. Choose one of them with 'Select'
-Select = 2; %The constant that will vary. 1 = T_air, 2 = r_inner ect
+Select = 4; %The constant that will vary. 1 = T_air, 2 = r_inner ect
 I = 7; %Number of different values of constant you want to include in the plot
 
 
@@ -41,7 +41,7 @@ Orange_dark = [180,60,0]/255;
 
 
 
-for iter = 1:I
+for iter = 0:I
     Green_grad = @(iter) Green_light + (Green_dark - Green_light)/I*iter;
     Orange_grad = @(iter) Orange_light + (Orange_dark - Orange_light)/I*iter;
 

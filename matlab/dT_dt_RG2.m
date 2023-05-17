@@ -10,13 +10,15 @@ m = T(2);
 %def constants, baseline
 k_glas = 0.9;
 k = k_glas;
-sigma = 5.67*10^-8;
-eps = 0.95;
 L=95*10^-3;
 T_air = 20.6+273.15;
+beta = betag_v2(T_air);
+
+sigma = 5.67*10^-8;
+eps = 0.95;
 r_outer = 70*10^-3;
 r_inner = 63*10^-3;
-D_AB = 2.634/101325;
+D_AB = 2.634/101325;%p_water((T_water+T_air)/2); %ändraaaaaaaa plz
 R = 8.3145;
 M = (1.0079*2 + 16)*10^-3;
 
@@ -33,15 +35,15 @@ router_max = 70*10^-3/2;
 drouter = (router_max-router_min)/I;
 
 L_min = 80*10^-3;
-L_max = 105*10^-3;
+L_max = 120*10^-3;
 dL = (L_max - L_min)/I;
 
 eps_min = 0.5;
 eps_max = 1;
 deps = (eps_max - eps_min)/I;
 
-k_max = 50;
-k_min = 0.01;
+k_max = 1;
+k_min = 0.1;
 dk = (k_max-k_min)/I;
 
 if select == 1
