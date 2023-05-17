@@ -28,7 +28,7 @@ rinner_min = 50*10^-3/2;
 rinner_max = 70*10^-3/2;
 drinner = (rinner_max-rinner_min)/I;
 
-router_min = 50*10^-3/2;
+router_min = r_inner/2-5*10^-3;
 router_max = 70*10^-3/2;
 drouter = (router_max-router_min)/I;
 
@@ -36,9 +36,13 @@ L_min = 80*10^-3;
 L_max = 105*10^-3;
 dL = (L_max - L_min)/I;
 
-sigma_min = 3*10^-8;
-sigma_max = 7*10^-8;
-dSigma = (sigma_max - sigma_min)/I;
+eps_min = 0.3;
+eps_max = 1;
+deps = (eps_max - eps_min)/I;
+
+k_max = 50;
+k_min = 0.01;
+dk = (k_max-k_min)/I;
 
 if select == 1
     T_air = Tair_min + dT*iter;
@@ -49,7 +53,7 @@ elseif select == 3
 elseif select == 4
     L = L_min + dL*iter;
 elseif select == 5
-    sigma = sigma_min + iter*dSigma;
+    eps = eps_min + iter*deps;
 elseif select == 6
     k = k_min + iter*dk;
 end
