@@ -15,6 +15,6 @@ elseif (2*10^7<Ra) && (Ra<3*10^(19))
     x = 1/3;
 end
 
-out = C*Ra^x*k_air(T_water)/D;
+out = C*Ra^x*k_air((T_water+T_air)/2)/D;
 
 end
