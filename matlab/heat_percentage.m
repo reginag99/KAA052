@@ -14,7 +14,7 @@ T_water=T(:,1);
 m=T(:,2);
 
 %def av konstanter
-k_glas = 0.9;
+k = 0.9;
 T_air=20.6+273.15;
 L=95*10^-3;
 beta = betag_v2(T_air);
@@ -42,7 +42,7 @@ heat = [];
 %derivator
 for i=1:length(t)
     options = optimoptions('fsolve','Display','none');
-    T_surf=fsolve(@(T_surf)Cond(T_surf,T_water(i),T_air,L,beta),Tsurf0(i),options);
+    T_surf=fsolve(@(T_surf)Cond(T_surf,T_water(i),T_air,L,beta,k),Tsurf0(i),options);
 rad = sigma*eps.*A_surf*(T_surf^4 - T_air^4);
 conv_heat_cyl = h_cyl(T_surf,T_air,beta,L,r_outer).*A_surf*(T_surf-T_air);
 conv_heat_top = h_top(T_water(i),T_air,beta,r_inner)*A_top*(T_water(i)-T_air);
@@ -62,29 +62,29 @@ evaporation = heat(:,4)./heat_tot;
 subplot(3,2,1)
 plot(t,radiation,'g','LineWidth',1);
 xlabel('Time (s)');
-ylabel('q_r_a_d (%)');
+ylabel('q_r_a_d/q_t_o_t (%)');
 legend('Radiation');
 
 subplot(3,2,2);
 plot(t,convection_walls,'r','LineWidth',1);
 xlabel('Time (s)');
-ylabel('q_w_a_l_l_s (%)');
+ylabel('q_w_a_l_l_s/q_t_o_t (%)');
 legend('Convection beaker walls');
 
 subplot(3,2,3);
 plot(t,convection_top,'b','LineWidth',1);
 xlabel('Time (s)');
-ylabel('q_t_o_p (%)');
+ylabel('q_t_o_p/q_t_o_t (%)');
 legend('Convection beaker top');
 
 subplot(3,2,4);
 plot(t,conduction,'m','LineWidth',1);
 xlabel('Time (s)');
-ylabel('q_c_o_n_d (%)');
+ylabel('q_c_o_n_d/q_t_o_t (%)');
 legend('Conduction');
 
 subplot(3,2,5);
 plot(t,evaporation,'k','LineWidth',1);
 xlabel('Time (s)');
-ylabel('q_e_v_a_p (%)');
+ylabel('q_e_v_a_p/q_t_o_t (%)');
 legend('Evaporation');

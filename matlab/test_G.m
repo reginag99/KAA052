@@ -8,30 +8,33 @@ r_inner = 63*10^-3;
 
 T0 = [T_water0,m0];%[T_surf0, T_water0,(T_surf0-T_water0)/(r_outer-r_inner)];%T_surf, T_water
 t_span = S{:,1};
-%t_span = [0:30:length(S{1})];
+[t,T] = ode45(@dT_dt_G,t_span,T0);
+temp=T(:,1);
+mass=T(:,2);
 
 
 
 %T-plots
-[t,T] = ode45(@dT_dt_G,t_span,T0);
 subplot(2,1,1)
 plot(t,T(:,1)); hold on;
 a=S{:,2}+273.15;
 plot(t,a);
 legend('Model Twater (K)','Exp Twater (K)'); 
-temp=T(:,1);
-mass=T(:,2);
+xlabel('Time (s)');
+ylabel('Water temperature (K)')
+
+
 %mass plots
 
 subplot(2,1,2)
-plot(t,T(:,2)); hold on;
+plot(t,T(:,2)*10^3); hold on;
 legend('Mass')
 
-m=S{:,3}*10^-3;
+m=S{:,3};
 plot(t,m); 
 legend('Model mass(g)','Exp mass(g)');
-
-%%
+xlabel('Time (s)');
+ylabel('Mass (g)')
 
 % 
 MT = [T(:,1),S{:,2}+273.15];
@@ -48,7 +51,7 @@ Mm_name = {'Genereted data, mass', 'Real data, mass'};
 
 R2_m = 1-sum((S{:,3}*10^-3-T(:,2)).^2)/sum((S{:,3}*10^-3-mean(S{:,3}*10^-3)).^2)
 Rest_m = (S{:,3}*10^-3-T(:,2))';
-%%
+
 figure
 subplot(2,1,1)
 plot(t_span,Rest_T,'o')
