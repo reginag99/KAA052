@@ -17,10 +17,10 @@ m0 = S{1,3}*10^-3;
 
 
 T0 = [T_water0,m0]; %inital values for the ode
-t_span =linspace(0,5000);% S{:,1};
+t_span =linspace(0,2000);% S{:,1};
 selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'}, {'epsilon'},{'k'}];%constants that can change. Choose one of them with 'Select'
-Select = 2; %The constant that will vary. 1 = T_air, 2 = r_inner ect
-I = 7; %Number of different values of constant you want to include in the plot
+Select = 5; %The constant that will vary. 1 = T_air, 2 = r_inner ect
+I = 7; %Number of different values of constant you want to include in the plot. OBS! If I =m, the plot will have m +1 iterations and lines as it will also plot iter = 0.
 
 
 figure("Name", "Variatin of constant  " + selctiontype(Select))
@@ -42,7 +42,7 @@ Orange_dark = [180,60,0]/255;
 
 
 
-for iter = 1:I
+for iter = 0:I
     Green_grad = @(iter) Green_light + (Green_dark - Green_light)/I*iter;
     Orange_grad = @(iter) Orange_light + (Orange_dark - Orange_light)/I*iter;
 
@@ -53,7 +53,7 @@ for iter = 1:I
     subplot(2,1,1)
     plot(t,T(:,1),'Color',Green_grad(iter),'linewidth',1); hold on;
     title(['Variation analysis for ', selctiontype{Select}, ', heat transfer'])
-    yline(273.15+50, 'r--', LineWidth=1)  
+   % yline(273.15+50, 'r--', LineWidth=1)  
     %mass plots
     subplot(2,1,2)
     plot(t,T(:,2),'Color',Orange_grad(iter),'linewidth',1); hold on;

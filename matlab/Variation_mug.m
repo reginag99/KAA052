@@ -19,7 +19,7 @@ t_h = t_span(end)/3600
 
 selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'},{'k'},{'epsilon'}];%constants that can change. Choose one of them with 'Select'
 Select = 2; %The constant that will vary. 1 = T_air, 2 = r_inner ect
-I = 8; %Number of different values of constant you want to include in the plot
+I = 7; %Number of different values of constant you want to include in the plot
 
 
 figure("Name", "Variatin of constant  " + selctiontype(Select))
