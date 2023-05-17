@@ -14,7 +14,7 @@ T_water=T(:,1);
 m=T(:,2);
 
 %def av konstanter
-k_glas = 0.9;
+k = 0.9;
 T_air=20.6+273.15;
 L=95*10^-3;
 beta = betag_v2(T_air);
@@ -42,7 +42,7 @@ heat = [];
 %derivator
 for i=1:length(t)
     options = optimoptions('fsolve','Display','none');
-    T_surf=fsolve(@(T_surf)Cond(T_surf,T_water(i),T_air,L,beta),Tsurf0(i),options);
+    T_surf=fsolve(@(T_surf)Cond(T_surf,T_water(i),T_air,L,beta,k),Tsurf0(i),options);
 rad = sigma*eps.*A_surf*(T_surf^4 - T_air^4);
 conv_heat_cyl = h_cyl(T_surf,T_air,beta,L,r_outer).*A_surf*(T_surf-T_air);
 conv_heat_top = h_top(T_water(i),T_air,beta,r_inner)*A_top*(T_water(i)-T_air);
