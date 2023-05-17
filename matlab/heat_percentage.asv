@@ -60,31 +60,31 @@ radiation = heat(:,1)./ heat_tot; % (%)
 evaporation = heat(:,4)./heat_tot;
 
 subplot(3,2,1)
-plot(t,radiation,'g','LineWidth',1);
+plot(t,radiation,'g');
 xlabel('Time (s)');
 ylabel('q_r_a_d (%)');
 legend('Radiation');
 
 subplot(3,2,2);
-plot(t,convection_walls,'r','LineWidth',1);
+plot(t,convection_walls,'r');
 xlabel('Time (s)');
 ylabel('q_w_a_l_l_s (%)');
 legend('Convection beaker walls');
 
 subplot(3,2,3);
-plot(t,convection_top,'b','LineWidth',1);
-xlabel('Time (s)');
+plot(t/3600,convection_top,'b');
+xlabel('Time (h)');
 ylabel('q_t_o_p (%)');
 legend('Convection beaker top');
 
 subplot(3,2,4);
-plot(t,conduction,'m','LineWidth',1);
+plot(t,conduction,'m');
 xlabel('Time (s)');
-ylabel('q_c_o_n_d (%)');
+ylabel('q_c_o_n_d) (%)');
 legend('Conduction');
 
 subplot(3,2,5);
-plot(t,evaporation,'k','LineWidth',1);
+plot(t,evaporation,'k');
 xlabel('Time (s)');
 ylabel('q_e_v_a_p (%)');
 legend('Evaporation');
