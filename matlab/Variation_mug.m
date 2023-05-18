@@ -14,12 +14,12 @@ clear; clc; clf; close  all
 T_water0 = 90+273.15;
 m0 = 150*10^-3;
 T0 = [T_water0,m0]; %startvalues for the ode
-t_span =[0:10000];
+t_span =[0:60000];
 t_h = t_span(end)/3600
 
 selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'},{'k'},{'epsilon'}];%constants that can change. Choose one of them with 'Select'
 Select = 4; %The constant that will vary. 1 = T_air, 2 = r_inner ect
-I = 7; %Number of different values of constant you want to include in the plot
+I = 4; %Number of different values of constant you want to include in the plot
 
 
 figure("Name", "Variatin of constant  " + selctiontype(Select))
@@ -31,6 +31,8 @@ subplot(2,1,2)
 xlabel('Time, [s]','FontSize',12,'FontWeight','bold')
 ylabel('Mass, [g]','FontSize',12,'FontWeight','bold')
 hold on
+
+fontsize(16,"points")
 
 Green_light = [60,200,160]/255;
 Green_dark = [10,130,90]/255;

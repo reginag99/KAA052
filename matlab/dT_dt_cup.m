@@ -10,9 +10,9 @@ beta = betag_v2(T_air);
 eps = 0.09;%s.352 Commericial sheet, aluminium, for 100 C
 sigma = 5.67*10^-8;
 
-r_inner = 70*10^-3/2;
-r_outer = r_inner + 5*10^-3;  %for the mug
-L = 150*10^-6/(r_inner^2*pi);
+L = 35*10^-3;
+r_inner = sqrt(150*10^-6/(L*pi));  %for the mug
+r_outer = r_inner + 4.99*10^-3;  %for the mug
 D_AB = 2.634/101325;%p_water((T_water+T_air)/2); %ändraaaaaaaa plz
 R = 8.3145;
 M = (1.0079*2 + 16)*10^-3;

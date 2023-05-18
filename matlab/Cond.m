@@ -1,9 +1,6 @@
-function fun = Cond(T_surf,T_water,T_air,L,betag_v2,k)
+function fun = Cond(T_surf,T_water,T_air,L,betag_v2,k,eps,r_outer,r_inner)
 
 sigma = 5.67*10^-8;
-eps = 0.95;
-r_outer = 70*10^-3;
-r_inner = 63*10^-3;
 
 A_surf = r_outer*2*pi*L;
 A_top = r_inner^2*pi;

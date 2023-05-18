@@ -1,12 +1,10 @@
 clear; clc; clf; close  all
 T_water0 = 90+273.15;
 m0 = 150*10^-3;
-r_outer = 70*10^-3;
-r_inner = 63*10^-3;
 
 
 T0 = [T_water0,m0];%[T_surf0, T_water0,(T_surf0-T_water0)/(r_outer-r_inner)];%T_surf, T_water
-t_span = linspace(0,30000);
+t_span = linspace(0,45000);
 t_h = t_span(end)/3600
 
 
@@ -30,3 +28,4 @@ xlabel('Time, [s]','FontSize',12,'FontWeight','bold')
 ylabel('Mass, [g]','FontSize',12,'FontWeight','bold')
 
 
+fontsize(16,"points")

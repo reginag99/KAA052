@@ -4,11 +4,7 @@ T_water = T(1);
 m = T(2);
 
 %def av konstanter
-<<<<<<< HEAD
-k_glas = 0.033;
-=======
 k = 0.9;
->>>>>>> 2648b046404110ef95a17fc52f0c8f80a71fcd7c
 L=95*10^-3;
 T_air = 20.6+273.15;
 beta = betag_v2(T_air);
@@ -29,7 +25,7 @@ L_water=125.81*10^-3/(rho_water(273.15+78.6)*2*r_inner*pi);
 
 T0=[T_water-5];%initial guess for T_surf
 options = optimoptions('fsolve','Display','none');
-T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k),T0,options);
+T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k,eps,r_outer,r_inner),T0,options);
 
 %k_c = h_top(T_water,T_air,betag_v2,r_inner)*(Sc_air((T_water + T_air)/2, D_AB)*pr_air(T_air,T_water))^(-2/3)/(cp_water(T_water)*rho_water((T_water+T_air)/2));
 c_surf = p_water(T_air)*0.22/(R*T_air);

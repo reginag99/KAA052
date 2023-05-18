@@ -36,7 +36,7 @@ legend('Model mass(g)','Exp mass(g)');
 xlabel('Time (s)');
 ylabel('Mass (g)')
 
-% 
+%% 
 MT = [T(:,1),S{:,2}+273.15];
 MT_name = {'Genereted data', 'Real data'};
 [p,t,stats] = anova1(MT,MT_name);
@@ -51,6 +51,7 @@ Mm_name = {'Genereted data, mass', 'Real data, mass'};
 
 R2_m = 1-sum((S{:,3}*10^-3-T(:,2)).^2)/sum((S{:,3}*10^-3-mean(S{:,3}*10^-3)).^2)
 Rest_m = (S{:,3}*10^-3-T(:,2))';
+%%
 
 figure
 subplot(2,1,1)

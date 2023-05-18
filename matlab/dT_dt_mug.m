@@ -13,8 +13,8 @@ sigma = 5.67*10^-8;
 eps = 0.09;
 L=95*10^-3;
 T_air = 20.6+273.15;
-r_outer = 70*10^-3;
-r_inner = 63*10^-3;
+r_outer = 70*10^-3/2;
+r_inner = 63*10^-3/2;
 D_AB = 2.634/101325;%p_water((T_water+T_air)/2); %ändraaaaaaaa plz
 R = 8.3145;
 M = (1.0079*2 + 16)*10^-3;
@@ -31,8 +31,8 @@ router_min = 50*10^-3/2;
 router_max = 70*10^-3/2;
 drouter = (router_max-router_min)/I;
 
-L_min = 80*10^-3;
-L_max = 150*10^-3;
+L_min = 35*10^-3;
+L_max = 40*10^-3;
 dL = (L_max - L_min)/I;
 
 k_max = 50;
@@ -47,16 +47,16 @@ if select == 1
     T_air = Tair_min + dT*iter;
 elseif select == 2
     r_inner = rinner_min + drinner*iter;
-    r_outer = r_inner + 5*10^-3;  %for the mug
+    r_outer = r_inner + 4.99*10^-3;  %for the mug
     L = 150*10^-6/(r_inner^2*pi);  %for the mug
 elseif select == 3
     r_outer = router_min + drouter*iter;
-    r_inner = r_outer - 5*10^-3; %for the mug
+    r_inner = r_outer - 4.99*10^-3; %for the mug
     L = 150*10^-6/(r_inner^2*pi);  %for the mug
 elseif select == 4
     L = L_min + dL*iter;
     r_inner = sqrt(150*10^-6/(L*pi));  %for the mug
-    r_outer = r_inner + 5*10^-3;  %for the mug
+    r_outer = r_inner + 4.99*10^-3;  %for the mug
 elseif select == 5
     k = k_min + iter*dk;
 elseif select == 6
@@ -71,7 +71,7 @@ L_water=m0/(rho_water(273.15+78.6)*2*r_inner*pi);
 
 T0=[T_water-5];%initial guess for T_surf
 options = optimoptions('fsolve','Display','none');
-T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k),T0,options);
+T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k,eps,r_outer,r_inner),T0,options);
 
 c_surf = p_water(T_air)*0.22/(R*T_air);
 c_bulk = p_water((T_air+T_water)/2)/(R*(T_air+T_water)/2); %sida/kap 499/26, vi hade skrivit bulkkoncentrationen fel. Det är från vattenytan det evaporerar, därmed bör ångtrycket vid vattenytan användas som koncentration
@@ -87,3 +87,4 @@ dTwater_dt =(-conv_mass-conv_heat -rad)/(rho_water(T_water)*cp_water(T_water)*r_
 
 dT_dt = [dTwater_dt;dm_dt];
 end
+
