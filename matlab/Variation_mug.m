@@ -18,7 +18,7 @@ t_span =[0:60000];
 t_h = t_span(end)/3600
 
 selctiontype = [{'T_{air}'}, {'r_{inner}'}, {'r_{outer}'}, {'L'},{'k'},{'epsilon'}];%constants that can change. Choose one of them with 'Select'
-Select = 4; %The constant that will vary. 1 = T_air, 2 = r_inner ect
+Select = 5; %The constant that will vary. 1 = T_air, 2 = r_inner ect
 I = 4; %Number of different values of constant you want to include in the plot
 
 

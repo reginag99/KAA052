@@ -25,7 +25,7 @@ L_water=125.81*10^-3/(rho_water(273.15+78.6)*2*r_inner*pi);
 
 T0=[T_water-5];%initial guess for T_surf
 options = optimoptions('fsolve','Display','none');
-T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k),T0,options);
+T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k,eps,r_outer,r_inner),T0,options);
 %eps = 0.032 + (0.35-0.032)/((3000+273.15)-(26 +273.15))*(T_surf-(26+273.15))
 
 %k_c = h_top(T_water,T_air,betag_v2,r_inner)*(Sc_air((T_water + T_air)/2, D_AB)*pr_air(T_air,T_water))^(-2/3)/(cp_water(T_water)*rho_water((T_water+T_air)/2));

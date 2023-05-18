@@ -42,7 +42,7 @@ heat = [];
 %derivator
 for i=1:length(t)
     options = optimoptions('fsolve','Display','none');
-    T_surf=fsolve(@(T_surf)Cond(T_surf,T_water(i),T_air,L,beta,k),Tsurf0(i),options);
+    T_surf=fsolve(@(T_surf)Cond(T_surf,T_water(i),T_air,L,beta,k,eps,r_outer,r_inner),Tsurf0(i),options);
 rad = sigma*eps.*A_surf*(T_surf^4 - T_air^4);
 conv_heat_cyl = h_cyl(T_surf,T_air,beta,L,r_outer).*A_surf*(T_surf-T_air);
 conv_heat_top = h_top(T_water(i),T_air,beta,r_inner)*A_top*(T_water(i)-T_air);

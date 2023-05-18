@@ -18,12 +18,3 @@ yline(50,'r-');
 
 legend('Model Tcup (^oC)'); ylabel('Temperature of cup (^oC)'); xlabel('Time (h)')
 
-% Can we select any start temperature of the coffee?
-
-% How should we present plots of e.g. convection, radiation etc? I've tried
-% saving values for all phenomena, but it doesn't save for each time step,
-% think it has something to do with the ODE. It is required? 
-
-% Sensitity analysis - we have plotted for different radiuses, heights and
-% air temperatures in different intervals to evaluate whether a large
-% radius is better etc. Should we analyse those plots or what is required? 
