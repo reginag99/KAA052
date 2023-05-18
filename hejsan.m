@@ -1,1 +1,0 @@
-function Hej = hejsan(x)
