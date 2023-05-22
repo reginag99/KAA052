@@ -46,7 +46,11 @@ for i=1:length(t)
 rad = sigma*eps.*A_surf*(T_surf^4 - T_air^4);
 conv_heat_cyl = h_cyl(T_surf,T_air,beta,L,r_outer).*A_surf*(T_surf-T_air);
 conv_heat_top = h_top(T_water(i),T_air,beta,r_inner)*A_top*(T_water(i)-T_air);
-conv_mass = dHvap_water(T_water(i))*m(i);
+c_surf = p_water(T_air)*0.22/(R*T_air);
+c_bulk = p_water((T_air+T_water(i))/2)/(R*(T_air+T_water(i))/2);
+k_c = kc(T_water(i),T_air,beta, r_inner,D_AB);
+dm_dt = k_c*(c_surf-c_bulk)*M*A_top;
+conv_mass = -dHvap_water(T_water(i))*dm_dt;
 heat = [heat; rad(end,:) conv_heat_cyl(end,:) conv_heat_top(end,:) conv_mass(end,:)];
 end
 
