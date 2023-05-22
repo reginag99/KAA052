@@ -27,9 +27,8 @@ T0=[T_water-5];%initial guess for T_surf
 options = optimoptions('fsolve','Display','none');
 T_surf=fsolve(@(T_surf)Cond(T_surf,T_water,T_air,L,beta,k,eps,r_outer,r_inner),T0,options);
 
-%k_c = h_top(T_water,T_air,betag_v2,r_inner)*(Sc_air((T_water + T_air)/2, D_AB)*pr_air(T_air,T_water))^(-2/3)/(cp_water(T_water)*rho_water((T_water+T_air)/2));
 c_surf = p_water(T_air)*0.22/(R*T_air);
-c_bulk = p_water((T_air+T_water)/2)/(R*(T_air+T_water)/2); %sida/kap 499/26, vi hade skrivit bulkkoncentrationen fel. Det är från vattenytan det evaporerar, därmed bör ångtrycket vid vattenytan användas som koncentration
+c_bulk = p_water((T_air+T_water)/2)/(R*(T_air+T_water)/2); 
 k_c = kc(T_water,T_air,beta, r_inner,D_AB);
 
 %derivator
@@ -40,9 +39,5 @@ conv_mass = dHvap_water(T_water)*dm_dt;
 
 dTwater_dt =(-conv_mass-conv_heat -rad)/(rho_water(T_water)*cp_water(T_water)*r_inner*2*pi*L_water);  
 
-
-%(-dTsurf_dt+h_surf*A_surf*(T_surf-T_air) + h_top*A_top*(T_water-T_air)+sigma*eps*A_surf*(T_surf^4 - T_air^4))/(rho_water(T_water)*cp_water(T_water)*r_inner*2*pi*L);
-% q_svett = kc*(cas-cabulk)*dHvap *m
-%rho cp dtwaterdt = konuktion + konvektion + radiation 
 dT_dt = [dTwater_dt;dm_dt];
 end
