@@ -13,7 +13,7 @@ sigma = 5.67*10^-8;
 eps = 0.95;
 r_outer = 70*10^-3;
 r_inner = 63*10^-3;
-D_AB = 2.634/101325;%p_water((T_water+T_air)/2); %ändraaaaaaaa plz
+D_AB = 2.634/101325;
 R = 8.3145;
 M = (1.0079*2 + 16)*10^-3;
 
